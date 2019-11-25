@@ -27,7 +27,7 @@
     "lodash": "^3.10.1",
     "prop-types": "^15.7.2",
     "react": "16.3.2",
-    "react-dom": "16.3.2",
+    "react-dom": "16.3.3",
     "react-redux": "5.0.7",
     "react-sidebar": "^3.0.2",
     "react-sparklines": "^1.7.0",
