@@ -3,20 +3,18 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Chart from "../components/spark_lines";
 import GoogleMap from "../components/google_map";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+// import posed from "react-pose";
+
 class WeatherList extends React.Component {
   renderWeather(cityData) {
     const { name, population } = cityData.city;
     const temps = cityData.list.map(weather => weather.main.temp);
     const pressures = cityData.list.map(weather => weather.main.pressure);
     const humidity = cityData.list.map(weather => weather.main.humidity);
-    const icon = cityData.list.map(weather => weather.weather[0].icon);
-
-    //console.log(symbol);
-    //console.log(`Temperatures ${temps}`);
-    //console.log(population);
+    const icon = "src/image/weatherman.jpg";
     console.log(cityData);
     const { lat, lon } = cityData.city.coord;
-    // const lon = cityData.city.coord.lon;
     return (
       <tr key={name}>
         <td>
@@ -33,11 +31,14 @@ class WeatherList extends React.Component {
         </td>
         <td>{population}</td>
         <td>
-          <img src={`http://openweathermap.org/img/wn/${icon}.png`} />
+          <img src={icon} style={{ width: "200px", height: "200px" }} />
         </td>
       </tr>
     );
   }
+  // componentDidMount() {
+  //   setInterval(this.renderWeather(this), 4000);
+  // }
 
   render() {
     const { locale, temperature, humidity, pressure, weather } = this.props;
@@ -50,10 +51,12 @@ class WeatherList extends React.Component {
             <th>{pressure} (HPA)</th>
             <th>{humidity} (%)</th>
             <th>Population</th>
-            <th>Icon</th>
+            <th>""</th>
           </tr>
         </thead>
+        {/* <TransitionGroup transitionAppearTimeout={3000} transitionName="alert"> */}
         <tbody>{weather.map(this.renderWeather)}</tbody>
+        {/* </TransitionGroup> */}
       </table>
     );
   }
